@@ -1,0 +1,44 @@
+name: Increase Build Number
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Check Dart Code"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get current build number
+        id: get_version
+        run: |
+          current_build_number=$(grep -oP 'version: \d+\.\d+\.\d+\+(\d+)' pubspec.yaml | sed 's/version: [0-9]*\.[0-9]*\.[0-9]*+//')
+          echo "Current build number: $current_build_number"
+          echo "current_build_number=$current_build_number" >> $GITHUB_OUTPUT
+          echo "now_build_number=$(($current_build_number + 1))" >> $GITHUB_OUTPUT
+
+
+      - name: Increment build number
+        run: |
+          new_build_number=${{ steps.get_version.outputs.now_build_number }}
+          echo "New build number: $new_build_number"
+          sed -i "s/\(version: [0-9]*\.[0-9]*\.[0-9]*+\)[0-9]*/\1$new_build_number/" pubspec.yaml
+
+      - name: Commit and push updated version
+        run: |
+          new_build_number=${{ steps.get_version.outputs.now_build_number }}
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add pubspec.yaml
+          git commit -m "Bump build number to $new_build_number"
+          git push

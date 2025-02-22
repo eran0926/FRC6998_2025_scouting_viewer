@@ -1,0 +1,36 @@
+name: Check Dart Code
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 設置 Flutter SDK 而非僅設置 Dart SDK
+      - uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: 'stable'
+
+      # 使用 flutter pub get 來安裝 Flutter 專案的依賴
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 選擇性步驟：驗證 Dart 格式
+      # - name: Verify formatting
+      #   run: flutter format --output=none --set-exit-if-changed .
+
+      # 使用 flutter analyze 來進行靜態分析
+      - name: Analyze project source
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      # 使用 flutter test 來運行 Flutter 測試
+      # - name: Run tests
+      #   run: flutter test
