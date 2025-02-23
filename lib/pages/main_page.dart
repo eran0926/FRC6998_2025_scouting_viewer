@@ -3,16 +3,17 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:viewer/widgets/side_menu_widget.dart';
 
 class MainPage extends StatelessWidget {
+  final String title;
   final Widget child;
 
-  const MainPage({required this.child, super.key});
+  const MainPage({this.title = '', required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: !ResponsiveBreakpoints.of(context).largerThan(TABLET)
             ? AppBar(
-                title: const Text('AppBar with hamburger button'),
+                title: Text(title),
                 leading: Builder(
                   builder: (context) {
                     return IconButton(

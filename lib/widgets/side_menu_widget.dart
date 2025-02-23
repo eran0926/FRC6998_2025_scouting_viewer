@@ -42,6 +42,9 @@ class SideMenuWidget extends StatelessWidget {
         if (!isSelected) {
           context.go(data[index].route);
         }
+        if (Navigator.canPop(context)) {
+          Navigator.pop(context);
+        }
         // Navigator.pop(context); // 關閉 Drawer 或側邊欄
       },
       child: Container(
