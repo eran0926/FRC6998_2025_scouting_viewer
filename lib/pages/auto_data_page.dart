@@ -11,12 +11,14 @@ class AutoDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Row(
-      children: [
-        if (ResponsiveBreakpoints.of(context).largerThan(TABLET))
+        body: SingleChildScrollView(
+      child: Row(
+        children: [
+          if (ResponsiveBreakpoints.of(context).largerThan(TABLET))
+            Expanded(child: SelectableReefDataTable()),
           Expanded(child: SelectableReefDataTable()),
-        Expanded(child: SelectableReefDataTable()),
-      ],
+        ],
+      ),
     ));
   }
 }
