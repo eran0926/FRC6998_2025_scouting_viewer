@@ -21,10 +21,12 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
     // Fetch team data here
     await Future.delayed(const Duration(seconds: 2));
     teamList = ['2345', '2346', '2347', '2348', '2349'];
-    setState(() {
-      isFetching = false;
-      _lastUpdated = DateTime.now();
-    });
+    if (mounted) {
+      setState(() {
+        isFetching = false;
+        _lastUpdated = DateTime.now();
+      });
+    }
   }
 
   @override
