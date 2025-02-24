@@ -9,16 +9,15 @@ class SelectableReefDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      double childWidth = max(360 - 16, constraints.maxWidth);
+      double childWidth = max(390, constraints.maxWidth);
       return FittedBox(
         fit: BoxFit.scaleDown,
         child: Container(
           // width: childWidth + 16,
           decoration: BoxDecoration(
             color: Color(0xFF21222D),
-            borderRadius: BorderRadius.circular(32),
+            borderRadius: BorderRadius.circular(28),
           ),
-          margin: EdgeInsets.all(16),
           padding: EdgeInsets.all(8),
           child: Column(
             children: [
@@ -40,11 +39,19 @@ class SelectableReefDataTable extends StatelessWidget {
               ReefDataTable(
                 width: childWidth,
                 data: {
-                  'l4': ['1', '2', '3', '4', '5', '6'],
-                  'l3': ['7', '8', '9', '10', '11', '12'],
-                  'l2': ['13', '14', '15', '16', '17', '18'],
-                  'l1': ['19', '20', '21', '22', '23', '24'],
-                  'sum': ['25/34', '26/33', '27/34', '28/34', '29/32', '30/23'],
+                  'l4': ['1', '2', '3', '4', '5', '6', '6'],
+                  'l3': ['7', '8', '9', '10', '11', '12', '6'],
+                  'l2': ['13', '14', '15', '16', '17', '18', '6'],
+                  'l1': ['19', '20', '21', '22', '23', '24', '6'],
+                  'sum': [
+                    '25/34',
+                    '26/33',
+                    '27/34',
+                    '28/34',
+                    '29/32',
+                    '30/23',
+                    '30/23'
+                  ],
                 },
               ),
             ],

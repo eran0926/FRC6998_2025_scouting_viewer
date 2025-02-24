@@ -20,7 +20,7 @@ class ReefDataTable extends StatelessWidget {
         defaultColumnWidth: IntrinsicColumnWidth(),
         children: [
           _titleRowBuilder(
-              data: ['AB', 'CD', 'EF', 'GH', 'IJ', 'KL', endTitle]),
+              data: ['LEVEL', 'AB', 'CD', 'EF', 'GH', 'IJ', 'KL', endTitle]),
           _rowBuilder(title: 'L4', data: data['l4']!),
           _rowBuilder(title: 'L3', data: data['l3']!),
           _rowBuilder(title: 'L2', data: data['l2']!),
@@ -51,7 +51,7 @@ _rowBuilder({String title = '', required List<String> data}) {
 
 _cellBuilder(String data, {bool isHeader = false}) {
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8),
+    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 2),
     child: Text(data,
         textAlign: TextAlign.center,
         style: TextStyle(
