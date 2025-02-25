@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:viewer/services/scouting_api_service.dart';
 
 class TeamNumberInputWidget extends StatefulWidget {
   const TeamNumberInputWidget({super.key});
@@ -12,6 +13,7 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
   late DateTime _lastUpdated;
   bool isFetching = false;
   List<String> teamList = [];
+  final ScoutingApiService apiService = ScoutingApiService();
 
   void _fetchTeamList() async {
     setState(() {
@@ -19,8 +21,10 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
     });
 
     // Fetch team data here
-    await Future.delayed(const Duration(seconds: 2));
-    teamList = ['2345', '2346', '2347', '2348', '2349'];
+    // await Future.delayed(const Duration(seconds: 2));
+    // teamList = ['2345', '2346', '2347', '2348', '2349'];
+    teamList = await apiService.fetchTeams();
+
     if (mounted) {
       setState(() {
         isFetching = false;
