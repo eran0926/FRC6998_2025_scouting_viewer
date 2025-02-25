@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^14.8.0
+  http: ^1.3.0
+  logger: ^2.5.0
   responsive_framework: ^1.5.1
 
 dev_dependencies:
