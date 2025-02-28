@@ -26,15 +26,30 @@ class AutoDataPage extends StatelessWidget {
                   Expanded(child: SelectableReefDataTable()),
               ],
             ),
+            SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
-                    child: PieChartWidget(data: [
+                    child: PieChartWidget(title: 'wddwdd', data: [
                   {'name': 'A', 'value': 10, 'color': Colors.red},
                   {'name': 'B', 'value': 20, 'color': Colors.green},
                   {'name': 'C', 'value': 30, 'color': Colors.blue},
-                  {'name': 'D', 'value': 40, 'color': Colors.yellow},
+                  {
+                    'name': 'D',
+                    'value': 40,
+                    'color': const Color.fromARGB(255, 214, 193, 0)
+                  },
                 ])),
+                if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
+                  SizedBox(width: 16),
+                if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
+                  Expanded(
+                      child: PieChartWidget(data: [
+                    {'name': 'A', 'value': 10, 'color': Colors.red},
+                    {'name': 'B', 'value': 20, 'color': Colors.green},
+                    {'name': 'C', 'value': 30, 'color': Colors.blue},
+                    {'name': 'D', 'value': 40, 'color': Colors.yellow},
+                  ])),
               ],
             ),
           ],

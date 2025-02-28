@@ -10,15 +10,14 @@ class SelectableReefDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       double childWidth = max(390, constraints.maxWidth);
-      return FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Container(
-          // width: childWidth + 16,
-          decoration: BoxDecoration(
-            color: Color(0xFF21222D),
-            borderRadius: BorderRadius.circular(28),
-          ),
-          padding: EdgeInsets.all(8),
+      return Container(
+        decoration: BoxDecoration(
+          color: Color(0xFF21222D),
+          borderRadius: BorderRadius.circular(28),
+        ),
+        padding: EdgeInsets.all(8),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
           child: Column(
             children: [
               SizedBox(height: 16),
