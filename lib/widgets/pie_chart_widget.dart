@@ -7,7 +7,13 @@ import 'package:viewer/widgets/indicator.dart';
 class PieChartWidget extends StatelessWidget {
   final String title;
   final List<Map<String, dynamic>> data;
-
+  final List<Color> colors = [
+    Color(0xff003f5c),
+    Color(0xff524a83),
+    Color(0xffa74780),
+    Color(0xffdc5553),
+    Color(0xffff7c43),
+  ];
   PieChartWidget({this.title = '', required this.data});
 
   @override
@@ -20,15 +26,19 @@ class PieChartWidget extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: data
-                  .map((e) => Indicator(
-                        color: e['color'] ?? Colors.cyan,
-                        text: e['name'],
-                        isSquare: false,
-                        size: 16,
-                        textColor: const Color.fromARGB(255, 167, 167, 167),
-                      ))
-                  .toList(),
+              children: data.asMap().entries.map(
+                (entry) {
+                  final index = entry.key;
+                  final item = entry.value;
+                  return Indicator(
+                    color: item['color'] ?? colors[index % colors.length],
+                    text: item['name'],
+                    isSquare: false,
+                    size: 16,
+                    textColor: const Color.fromARGB(255, 167, 167, 167),
+                  );
+                },
+              ).toList(),
             ),
             SizedBox(height: 16),
             Expanded(
@@ -46,7 +56,8 @@ class PieChartWidget extends StatelessWidget {
                           .map<int, PieChartSectionData>((index, e) {
                             final value = PieChartSectionData(
                               title: e['value'].toString(),
-                              color: e['color'] ?? Colors.cyan,
+                              color:
+                                  e['color'] ?? colors[index % colors.length],
                               value: e['value'].toDouble(),
                               titleStyle: TextStyle(
                                 fontSize: 16,
