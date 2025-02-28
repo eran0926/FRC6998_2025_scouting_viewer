@@ -15,7 +15,7 @@ class ReefData {
 
   factory ReefData.fromJson(Map<String, dynamic> json) {
     ReefDataType type =
-        ReefDataType.values.firstWhere((e) => e.toString() == json['type']);
+        ReefDataType.values.firstWhere((e) => e.name == json['type']);
     return ReefData(
       l1: ReefLevelData.fromJson(json['l1'], type),
       l2: ReefLevelData.fromJson(json['l2'], type),
