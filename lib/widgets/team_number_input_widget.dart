@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+
 import 'package:viewer/services/scouting_api_service.dart';
+import 'package:viewer/providers/objective_data_provider.dart';
 
 class TeamNumberInputWidget extends StatefulWidget {
   const TeamNumberInputWidget({super.key});
@@ -41,6 +44,8 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
 
   @override
   Widget build(BuildContext context) {
+    ObjectiveDataProvider objectiveDataProvider =
+        Provider.of<ObjectiveDataProvider>(context, listen: false);
     return Autocomplete<String>(fieldViewBuilder: (BuildContext context,
         TextEditingController textEditingController,
         FocusNode focusNode,
@@ -56,18 +61,19 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
         inputFormatters: <TextInputFormatter>[
           FilteringTextInputFormatter.digitsOnly
         ],
-        onSubmitted: (String value) {
-          onFieldSubmitted();
-          print('Submitted $value');
-        },
+        // onSubmitted: (String value) {
+        //   onFieldSubmitted();
+        //   print('Submitted $value');
+        // },
         // onEditingComplete: () {
         //   // onFieldSubmitted();
         //   print('Editing complete ${textEditingController.text}');
         // },
-        // onTapOutside: (event) {
-        //   print('Tapped outside ${textEditingController.text}');
-        //   focusNode.unfocus();
-        // },
+        onTapOutside: (event) {
+          print('Tapped outside ${textEditingController.text}');
+          focusNode.unfocus();
+          objectiveDataProvider.selectTeam(textEditingController.text);
+        },
       );
     }, optionsBuilder: (TextEditingValue textEditingValue) async {
       if (textEditingValue.text.isEmpty) {
