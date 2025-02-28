@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
+import 'package:viewer/widgets/card_widget.dart';
 import 'package:viewer/widgets/indicator.dart';
 
 class PieChartWidget extends StatelessWidget {
@@ -11,36 +12,29 @@ class PieChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Color(0xFF21222D),
-        borderRadius: BorderRadius.circular(28),
-      ),
-      child: AspectRatio(
-        aspectRatio: 1.3,
-        child: Column(
-          children: [
-            SizedBox(height: 8),
-            if (title.isNotEmpty) Text(title, style: TextStyle(fontSize: 24)),
-            SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: data
-                  .map((e) => Indicator(
-                        color: e['color'] ?? Colors.cyan,
-                        text: e['name'],
-                        isSquare: false,
-                        size: 16,
-                        textColor: const Color.fromARGB(255, 167, 167, 167),
-                      ))
-                  .toList(),
-            ),
-            SizedBox(height: 16),
-            Expanded(
-              flex: 20,
-              child: LayoutBuilder(
-                builder: (context, constraints) => PieChart(
+    return CardWidget(
+      title: title,
+      aspectRatio: 1.3,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: data
+                .map((e) => Indicator(
+                      color: e['color'] ?? Colors.cyan,
+                      text: e['name'],
+                      isSquare: false,
+                      size: 16,
+                      textColor: const Color.fromARGB(255, 167, 167, 167),
+                    ))
+                .toList(),
+          ),
+          SizedBox(height: 16),
+          Expanded(
+            child: LayoutBuilder(
+              builder: (context, constraints) => SizedBox(
+                height: constraints.maxHeight,
+                child: PieChart(
                   PieChartData(
                     // borderData: FlBorderData(show: false),
                     // sectionsSpace: 40,
@@ -66,9 +60,9 @@ class PieChartWidget extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 8),
-          ],
-        ),
+          ),
+          SizedBox(height: 8),
+        ],
       ),
     );
   }

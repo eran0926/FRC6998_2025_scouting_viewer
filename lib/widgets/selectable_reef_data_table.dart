@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:viewer/widgets/card_widget.dart';
 import 'package:viewer/widgets/reef_data_table.dart';
 
 class SelectableReefDataTable extends StatelessWidget {
@@ -10,12 +11,7 @@ class SelectableReefDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       double childWidth = max(390, constraints.maxWidth);
-      return Container(
-        decoration: BoxDecoration(
-          color: Color(0xFF21222D),
-          borderRadius: BorderRadius.circular(28),
-        ),
-        padding: EdgeInsets.all(8),
+      return CardWidget(
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Column(
