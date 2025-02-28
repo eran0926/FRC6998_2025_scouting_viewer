@@ -20,17 +20,14 @@ class CardWidget extends StatelessWidget {
         color: Color(0xFF21222D),
         borderRadius: BorderRadius.circular(28),
       ),
-      child: title.isEmpty
-          ? child
-          : Column(
-              children: [
-                SizedBox(height: title.isNotEmpty ? 8 : 16),
-                if (title.isNotEmpty)
-                  Text(title, style: TextStyle(fontSize: 24)),
-                if (title.isNotEmpty) SizedBox(height: 8),
-                Expanded(child: child),
-              ],
-            ),
+      child: Column(
+        children: [
+          SizedBox(height: title.isNotEmpty ? 0 : 8),
+          if (title.isNotEmpty) Text(title, style: TextStyle(fontSize: 24)),
+          if (title.isNotEmpty) SizedBox(height: 8),
+          child,
+        ],
+      ),
     );
 
     if (aspectRatio != null) {
