@@ -14,7 +14,7 @@ class PieChartWidget extends StatelessWidget {
     Color(0xffdc5553),
     Color(0xffff7c43),
   ];
-  PieChartWidget({this.title = '', required this.data});
+  PieChartWidget({super.key, this.title = '', required this.data});
 
   @override
   Widget build(BuildContext context) {
