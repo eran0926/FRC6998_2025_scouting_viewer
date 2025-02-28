@@ -19,15 +19,17 @@ class SelectableReefDataTable extends StatelessWidget {
               SizedBox(height: 16),
               DropdownMenu<String>(
                 width: childWidth / 1.618,
+                initialSelection: 'reef_count_per_point',
                 dropdownMenuEntries: [
                   DropdownMenuEntry<String>(
-                      value: '1', label: 'Average Reef Success'),
-                  DropdownMenuEntry<String>(
-                      value: '2', label: 'Reef Success/Tried'),
-                  DropdownMenuEntry<String>(
-                      value: '2', label: 'Reef Success rate'),
-                  DropdownMenuEntry<String>(
-                      value: '2', label: 'Reef Position Proportion'),
+                      value: 'reef_count_per_point',
+                      label: 'Reef Count per Point'),
+                  // DropdownMenuEntry<String>(
+                  //     value: '2', label: 'Reef Success/Tried'),
+                  // DropdownMenuEntry<String>(
+                  //     value: '2', label: 'Reef Success rate'),
+                  // DropdownMenuEntry<String>(
+                  //     value: '2', label: 'Reef Position Proportion'),
                 ],
               ),
               SizedBox(height: 16),
