@@ -1,14 +1,25 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:viewer/providers/objective_data_provider.dart';
 import 'package:viewer/widgets/card_widget.dart';
 import 'package:viewer/widgets/reef_data_table.dart';
 
-class SelectableReefDataTable extends StatelessWidget {
+class SelectableReefDataTable extends StatefulWidget {
   const SelectableReefDataTable({super.key});
 
   @override
+  State<SelectableReefDataTable> createState() =>
+      _SelectableReefDataTableState();
+}
+
+class _SelectableReefDataTableState extends State<SelectableReefDataTable> {
+  String selectedDataType = 'reef_count_per_point';
+  @override
   Widget build(BuildContext context) {
+    ObjectiveDataProvider objectiveDataProvider =
+        Provider.of<ObjectiveDataProvider>(context);
     return LayoutBuilder(builder: (context, constraints) {
       double childWidth = max(390, constraints.maxWidth);
       return CardWidget(
@@ -31,25 +42,13 @@ class SelectableReefDataTable extends StatelessWidget {
                   // DropdownMenuEntry<String>(
                   //     value: '2', label: 'Reef Position Proportion'),
                 ],
+                onSelected: (value) =>
+                    setState(() => selectedDataType = value ?? ''),
               ),
               SizedBox(height: 16),
               ReefDataTable(
                 width: childWidth,
-                data: {
-                  'l4': ['1', '2', '3', '4', '5', '6', '6'],
-                  'l3': ['7', '8', '9', '10', '11', '12', '6'],
-                  'l2': ['13', '14', '15', '16', '17', '18', '6'],
-                  'l1': ['19', '20', '21', '22', '23', '24', '6'],
-                  'sum': [
-                    '25/34',
-                    '26/33',
-                    '27/34',
-                    '28/34',
-                    '29/32',
-                    '30/23',
-                    '30/23'
-                  ],
-                },
+                data: objectiveDataProvider.data['auto'][selectedDataType],
               ),
             ],
           ),
