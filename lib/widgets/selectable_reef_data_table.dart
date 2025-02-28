@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:viewer/model/reef_data.dart';
 import 'package:viewer/providers/objective_data_provider.dart';
 import 'package:viewer/widgets/card_widget.dart';
 import 'package:viewer/widgets/reef_data_table.dart';
@@ -22,6 +23,8 @@ class _SelectableReefDataTableState extends State<SelectableReefDataTable> {
         Provider.of<ObjectiveDataProvider>(context);
     return LayoutBuilder(builder: (context, constraints) {
       double childWidth = max(390, constraints.maxWidth);
+      ReefData reefData = ReefData.fromJson(
+          objectiveDataProvider.data['auto'][selectedDataType]);
       return CardWidget(
         child: FittedBox(
           fit: BoxFit.scaleDown,
@@ -48,7 +51,7 @@ class _SelectableReefDataTableState extends State<SelectableReefDataTable> {
               SizedBox(height: 16),
               ReefDataTable(
                 width: childWidth,
-                data: objectiveDataProvider.data['auto'][selectedDataType],
+                data: reefData.toTableData(),
               ),
             ],
           ),
