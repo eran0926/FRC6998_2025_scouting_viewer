@@ -1,9 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import 'package:viewer/providers/objective_data_provider.dart';
 import 'package:viewer/widgets/pie_chart_widget.dart';
-import 'package:viewer/widgets/reef_data_table.dart';
 import 'package:viewer/widgets/selectable_reef_data_table.dart';
 
 class AutoDataPage extends StatelessWidget {
@@ -11,6 +11,17 @@ class AutoDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ObjectiveDataProvider objectiveDataProvider =
+        Provider.of<ObjectiveDataProvider>(context);
+    if (objectiveDataProvider.state == ObjectiveDataProviderState.fetching) {
+      return Center(child: CircularProgressIndicator());
+    } else if (objectiveDataProvider.state ==
+        ObjectiveDataProviderState.teamUnset) {
+      return Center(child: Text('Please select a team'));
+    } else if (objectiveDataProvider.state ==
+        ObjectiveDataProviderState.teamNotFound) {
+      return Center(child: Text('Team not found'));
+    }
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
