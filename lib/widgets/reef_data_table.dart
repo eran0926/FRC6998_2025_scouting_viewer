@@ -25,7 +25,7 @@ class ReefDataTable extends StatelessWidget {
           _rowBuilder(title: 'L3', data: data['l3']!),
           _rowBuilder(title: 'L2', data: data['l2']!),
           _rowBuilder(title: 'L1', data: data['l1']!),
-          _rowBuilder(title: endTitle, data: data[endTitle.toLowerCase()]!),
+          _rowBuilder(title: endTitle, data: data['all_level']!),
         ],
       ),
     );

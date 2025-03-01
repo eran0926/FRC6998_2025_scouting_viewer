@@ -52,6 +52,7 @@ class _SelectableReefDataTableState extends State<SelectableReefDataTable> {
               ReefDataTable(
                 width: childWidth,
                 data: reefData.toTableData(),
+                endTitle: reefData.type.name,
               ),
             ],
           ),

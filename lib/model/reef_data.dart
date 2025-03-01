@@ -21,7 +21,7 @@ class ReefData {
       l2: ReefLevelData.fromJson(json['l2'], type),
       l3: ReefLevelData.fromJson(json['l3'], type),
       l4: ReefLevelData.fromJson(json['l4'], type),
-      caculated: json[type.name],
+      caculated: ReefLevelData.fromJson(json[type.name], type),
       type: type,
     );
   }
@@ -32,7 +32,7 @@ class ReefData {
       'l3': l3.toList(),
       'l2': l2.toList(),
       'l1': l1.toList(),
-      type.name: caculated.toList(),
+      'all_level': caculated.toList(),
     };
   }
 }
@@ -60,7 +60,7 @@ class ReefLevelData {
       gh: json['GH'],
       ij: json['IJ'],
       kl: json['KL'],
-      caculated: json['caculated'],
+      caculated: json[type.name],
       type: type,
     );
   }
