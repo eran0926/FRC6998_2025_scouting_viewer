@@ -12,6 +12,7 @@ class TeamListProvider extends ChangeNotifier {
     }
     if (_teams.isEmpty ||
         _lastUpdated.isBefore(DateTime.now().subtract(Duration(minutes: 5)))) {
+      _lastUpdated = DateTime.now();
       fetchTeams();
     }
     return _teams;
