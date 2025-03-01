@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:viewer/services/scouting_api_service.dart';
 import 'package:viewer/providers/objective_data_provider.dart';
+import 'package:viewer/utils/logger.dart';
 
 class TeamNumberInputWidget extends StatefulWidget {
   const TeamNumberInputWidget({super.key});
@@ -65,19 +66,21 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
         //   onFieldSubmitted();
         //   print('Submitted $value');
         // },
-        // onEditingComplete: () {
-        //   // onFieldSubmitted();
-        //   print('Editing complete ${textEditingController.text}');
-        // },
+        onEditingComplete: () {
+          // onFieldSubmitted();
+          logger.d('Editing complete ${textEditingController.text}');
+          focusNode.unfocus();
+          objectiveDataProvider.selectTeam(textEditingController.text);
+        },
         onTapOutside: (event) {
-          print('Tapped outside ${textEditingController.text}');
+          logger.d('Tapped outside ${textEditingController.text}');
           focusNode.unfocus();
           objectiveDataProvider.selectTeam(textEditingController.text);
         },
       );
     }, optionsBuilder: (TextEditingValue textEditingValue) async {
       if (textEditingValue.text.isEmpty) {
-        return const Iterable<String>.empty();
+        return teamList;
       }
       if (isFetching) {
         return const Iterable<String>.empty();
@@ -88,6 +91,10 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
       }
       return teamList.where((String option) =>
           option.startsWith(textEditingValue.text.toLowerCase()));
+    }, onSelected: (String selection) {
+      logger.d('Selected $selection');
+      FocusScope.of(context).unfocus();
+      objectiveDataProvider.selectTeam(selection);
     });
   }
 }
