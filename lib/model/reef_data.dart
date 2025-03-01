@@ -65,15 +65,19 @@ class ReefLevelData {
     );
   }
 
+  String _formatNumber(double num, int fractionDigits) {
+    return double.parse(num.toStringAsFixed(fractionDigits)).toString();
+  }
+
   List<String> toList() {
     return [
-      ab.toString(),
-      cd.toString(),
-      ef.toString(),
-      gh.toString(),
-      ij.toString(),
-      kl.toString(),
-      caculated.toString()
+      _formatNumber(ab, 2),
+      _formatNumber(cd, 2),
+      _formatNumber(ef, 2),
+      _formatNumber(gh, 2),
+      _formatNumber(ij, 2),
+      _formatNumber(kl, 2),
+      _formatNumber(caculated, 2),
     ];
   }
 }
