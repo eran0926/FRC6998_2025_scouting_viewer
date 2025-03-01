@@ -11,7 +11,6 @@ class SideMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     String currentRoute =
         GoRouter.of(context).routeInformationProvider.value.uri.toString();
-    print('currentRoute: $currentRoute');
 
     return Container(
       padding: const EdgeInsets.only(top: 80, left: 20, right: 20),
