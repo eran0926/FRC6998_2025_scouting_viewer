@@ -25,26 +25,20 @@ class ScoutingApiService {
     }
   }
 
-  Future<Map<String, dynamic>> fetchObjectiveData(String teamNumber) async {
+  Future<(String, int)> fetchObjectiveData(String teamNumber) async {
     try {
       final response = await http.get(_baseUrl.replace(
           path: '/objective/result',
           queryParameters: {'team_number': teamNumber}));
+      logger.i('Response body: ${response.body}');
       logger.i('Response code: ${response.statusCode}');
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> data = jsonDecode(response.body);
-        logger.i('Objective data: $data');
-        return data;
-      }
-      if (response.statusCode == 404) {
-        return {};
-      } else {
-        throw Exception('Failed to load objective data');
-      }
+      return (response.body, response.statusCode);
+    } on http.ClientException catch (e) {
+      logger.e(e);
+      return ('', 600);
     } catch (e) {
-      // print('Error: $e');
       logger.e('Error: $e');
-      return {};
+      return ('', 700);
     }
   }
 }
