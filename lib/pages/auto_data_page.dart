@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'package:viewer/providers/objective_data_provider.dart';
-import 'package:viewer/utils/logger.dart';
 import 'package:viewer/widgets/pie_chart_widget.dart';
 import 'package:viewer/widgets/preload_pie_chart_widget.dart';
 import 'package:viewer/widgets/selectable_reef_data_table.dart';
@@ -29,14 +28,6 @@ class AutoDataPage extends StatelessWidget {
           child: Text(
               'An error occurred, status code: ${objectiveDataProvider.statusCode}'));
     }
-    logger.i(objectiveDataProvider.data['auto']['preload_count'].entries
-        .map((e) => {
-              'name': e.key,
-              'value': e.value,
-            })
-        .toList()
-        .cast<Map<String, dynamic>>()
-        .runtimeType);
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(

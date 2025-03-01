@@ -29,8 +29,6 @@ class ScoutingApiService {
       final response = await http.get(_baseUrl.replace(
           path: '/objective/result',
           queryParameters: {'team_number': teamNumber}));
-      logger.i('Response body: ${response.body}');
-      logger.i('Response code: ${response.statusCode}');
       return (response.body, response.statusCode);
     } on http.ClientException catch (e) {
       logger.e(e);
