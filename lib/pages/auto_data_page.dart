@@ -87,7 +87,7 @@ class AutoDataPage extends StatelessWidget {
                             ['stability']
                       ],
                     },
-                    legends: ['Auto Line', 'Auto Power Cells'],
+                    legends: ['Average', 'Stability'],
                   ),
                 ]),
             // SizedBox(height: 16),
