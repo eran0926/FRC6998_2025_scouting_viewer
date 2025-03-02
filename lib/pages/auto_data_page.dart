@@ -89,6 +89,36 @@ class AutoDataPage extends StatelessWidget {
                     },
                     legends: ['Average', 'Stability'],
                   ),
+                  BarChartCard(
+                    title: "Average Reef Count by Level",
+                    data: {
+                      'L1': [
+                        objectiveDataProvider.data['auto']['reef']['l1']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['reef']['l1']
+                            ['stability']
+                      ],
+                      'L2': [
+                        objectiveDataProvider.data['auto']['reef']['l2']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['reef']['l2']
+                            ['stability']
+                      ],
+                      'L3': [
+                        objectiveDataProvider.data['auto']['reef']['l3']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['reef']['l3']
+                            ['stability']
+                      ],
+                      'L4': [
+                        objectiveDataProvider.data['auto']['reef']['l4']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['reef']['l4']
+                            ['stability']
+                      ],
+                    },
+                    legends: ['Average', 'Stability'],
+                  ),
                 ]),
             // SizedBox(height: 16),
           ],
