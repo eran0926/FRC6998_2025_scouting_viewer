@@ -33,6 +33,8 @@ class BarChartCard extends StatelessWidget {
                                     rod.key % chartColorSet.length],
                               ),
                           ],
+                          showingTooltipIndicators: List.generate(
+                              rods.value.length, (index) => index),
                         ),
                     ],
                     titlesData: FlTitlesData(
