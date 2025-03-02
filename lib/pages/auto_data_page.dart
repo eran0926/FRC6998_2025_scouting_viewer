@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:viewer/providers/objective_data_provider.dart';
 import 'package:viewer/utils/pie_chart_data_transformer.dart';
+import 'package:viewer/widgets/bar_chart_card.dart';
 import 'package:viewer/widgets/pie_chart_card.dart';
 import 'package:viewer/widgets/selectable_reef_data_table.dart';
 
@@ -65,6 +66,16 @@ class AutoDataPage extends StatelessWidget {
                       data: pieChartDataTransformer(objectiveDataProvider
                           .data['auto']['start_position_count'])),
                 ]),
+
+            SizedBox(height: 16),
+            BarChartCard(
+              data: {
+                'Coral': [5, 3],
+                'Alage': [2, 4],
+                'Net': [9, 1],
+              },
+              legends: ['Auto Line', 'Auto Power Cells'],
+            ),
           ],
         ),
       ),

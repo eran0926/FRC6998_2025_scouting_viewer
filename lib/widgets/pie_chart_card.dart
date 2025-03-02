@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
+import 'package:viewer/constants.dart';
 import 'package:viewer/widgets/card_widget.dart';
-import 'package:viewer/widgets/indicator.dart';
+import 'package:viewer/widgets/chart_legend_widget.dart';
 
 class PieChartCard extends StatelessWidget {
   final String title;
@@ -30,8 +31,9 @@ class PieChartCard extends StatelessWidget {
                 (entry) {
                   final index = entry.key;
                   final item = entry.value;
-                  return Indicator(
-                    color: item['color'] ?? colors[index % colors.length],
+                  return ChartLegend(
+                    color: item['color'] ??
+                        chartColorSet[index % chartColorSet.length],
                     text: item['name'],
                     isSquare: false,
                     size: 16,
@@ -56,8 +58,8 @@ class PieChartCard extends StatelessWidget {
                           .map<int, PieChartSectionData>((index, e) {
                             final value = PieChartSectionData(
                               title: e['value'].toString(),
-                              color:
-                                  e['color'] ?? colors[index % colors.length],
+                              color: e['color'] ??
+                                  chartColorSet[index % chartColorSet.length],
                               value: e['value'].toDouble(),
                               titleStyle: TextStyle(
                                 fontSize: 16,
