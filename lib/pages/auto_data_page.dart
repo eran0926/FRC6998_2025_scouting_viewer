@@ -65,17 +65,32 @@ class AutoDataPage extends StatelessWidget {
                       title: 'Start Position',
                       data: pieChartDataTransformer(objectiveDataProvider
                           .data['auto']['start_position_count'])),
+                  BarChartCard(
+                    title: "Arena Elements' Scoring",
+                    data: {
+                      'Reef': [
+                        objectiveDataProvider.data['auto']['reef_score']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['reef_score']
+                            ['stability']
+                      ],
+                      'Processor': [
+                        objectiveDataProvider.data['auto']['processor_score']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['processor_score']
+                            ['stability']
+                      ],
+                      'Net': [
+                        objectiveDataProvider.data['auto']['processor_score']
+                            ['average'],
+                        objectiveDataProvider.data['auto']['processor_score']
+                            ['stability']
+                      ],
+                    },
+                    legends: ['Auto Line', 'Auto Power Cells'],
+                  ),
                 ]),
-
-            SizedBox(height: 16),
-            BarChartCard(
-              data: {
-                'Coral': [5, 3],
-                'Alage': [2, 4],
-                'Net': [9, 1],
-              },
-              legends: ['Auto Line', 'Auto Power Cells'],
-            ),
+            // SizedBox(height: 16),
           ],
         ),
       ),
