@@ -13,7 +13,9 @@ class ScoutingApiService {
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
         logger.i('Teams: $data');
-        return data.map((e) => e.toString()).toList();
+        List<String> teamList = data.map((e) => e.toString()).toList();
+        teamList.sort();
+        return teamList;
       } else {
         throw Exception('Failed to load teams');
       }
