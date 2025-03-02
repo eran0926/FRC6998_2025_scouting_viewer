@@ -30,10 +30,12 @@ class BarChartCard extends StatelessWidget {
                     for (var rods in data.values.toList().asMap().entries)
                       BarChartGroupData(
                         x: rods.key,
+                        barsSpace: 15,
                         barRods: [
                           for (var rod in rods.value.asMap().entries)
                             BarChartRodData(
                               toY: rod.value,
+                              width: 10,
                               color:
                                   chartColorSet[rod.key % chartColorSet.length],
                             ),
