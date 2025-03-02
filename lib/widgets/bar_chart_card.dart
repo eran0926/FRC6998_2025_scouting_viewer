@@ -5,14 +5,16 @@ import 'package:viewer/widgets/card_widget.dart';
 import 'package:viewer/widgets/chart_legend_widget.dart';
 
 class BarChartCard extends StatelessWidget {
+  final String title;
   Map<String, List<double>> data;
   List<String> legends;
-  BarChartCard({super.key, required this.data, required this.legends});
+  BarChartCard(
+      {super.key, this.title = '', required this.data, required this.legends});
 
   @override
   Widget build(BuildContext context) {
     return CardWidget(
-        title: 'Bar Chart',
+        title: title,
         aspectRatio: 1.3,
         child: Expanded(
           child: Column(
