@@ -23,7 +23,10 @@ class CardWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: title.isNotEmpty ? 0 : 8),
-          if (title.isNotEmpty) Text(title, style: TextStyle(fontSize: 24)),
+          if (title.isNotEmpty)
+            FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(title, style: TextStyle(fontSize: 24))),
           if (title.isNotEmpty) SizedBox(height: 8),
           child,
         ],
