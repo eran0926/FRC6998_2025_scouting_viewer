@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:viewer/widgets/card_widget.dart';
 import 'package:viewer/widgets/indicator.dart';
 
-class PieChartWidget extends StatelessWidget {
+class PieChartCard extends StatelessWidget {
   final String title;
   final List<Map<String, dynamic>> data;
   final List<Color> colors = [
@@ -14,7 +14,7 @@ class PieChartWidget extends StatelessWidget {
     Color(0xffdc5553),
     Color(0xffff7c43),
   ];
-  PieChartWidget({super.key, this.title = '', required this.data});
+  PieChartCard({super.key, this.title = '', required this.data});
 
   @override
   Widget build(BuildContext context) {
