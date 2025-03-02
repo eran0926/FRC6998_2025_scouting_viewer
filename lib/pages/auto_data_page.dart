@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'package:viewer/providers/objective_data_provider.dart';
+import 'package:viewer/utils/pie_chart_data_transformer.dart';
 import 'package:viewer/widgets/pie_chart_widget.dart';
-import 'package:viewer/widgets/preload_pie_chart_widget.dart';
 import 'package:viewer/widgets/selectable_reef_data_table.dart';
 
 class AutoDataPage extends StatelessWidget {
@@ -34,31 +34,38 @@ class AutoDataPage extends StatelessWidget {
         padding: EdgeInsets.all(12),
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(child: SelectableReefDataTable()),
-                if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
-                  SizedBox(width: 16),
-                if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
-                  Expanded(child: SelectableReefDataTable()),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Expanded(child: SelectableReefDataTable()),
+            //     if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
+            //       SizedBox(width: 16),
+            //     if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
+            //       Expanded(child: SelectableReefDataTable()),
+            //   ],
+            // ),
+            // SizedBox(height: 16),
+            SelectableReefDataTable(),
             SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(child: PreloadPieChartWidget()),
-                if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
-                  SizedBox(width: 16),
-                if (ResponsiveBreakpoints.of(context).largerThan(MOBILE))
-                  Expanded(
-                      child: PieChartWidget(data: [
-                    {'name': 'A', 'value': 10, 'color': Colors.red},
-                    {'name': 'B', 'value': 20, 'color': Colors.green},
-                    {'name': 'C', 'value': 30, 'color': Colors.blue},
-                    {'name': 'D', 'value': 40, 'color': Colors.yellow},
-                  ])),
-              ],
-            ),
+            GridView.count(
+                crossAxisCount:
+                    ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+                        ? 2
+                        : 1,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 1.3,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  PieChartWidget(
+                      title: 'Preload',
+                      data: pieChartDataTransformer(
+                          objectiveDataProvider.data['auto']['preload_count'])),
+                  PieChartWidget(
+                      title: 'Start Position',
+                      data: pieChartDataTransformer(objectiveDataProvider
+                          .data['auto']['start_position_count'])),
+                ]),
           ],
         ),
       ),
