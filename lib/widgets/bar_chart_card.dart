@@ -6,9 +6,9 @@ import 'package:viewer/widgets/chart_legend_widget.dart';
 
 class BarChartCard extends StatelessWidget {
   final String title;
-  Map<String, List<double>> data;
-  List<String> legends;
-  BarChartCard(
+  final Map<String, List<double>> data;
+  final List<String> legends;
+  const BarChartCard(
       {super.key, this.title = '', required this.data, required this.legends});
 
   @override
