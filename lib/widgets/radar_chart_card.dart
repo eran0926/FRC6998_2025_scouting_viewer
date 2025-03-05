@@ -5,12 +5,16 @@ import 'package:viewer/widgets/card_widget.dart';
 class RadarChartCard extends StatelessWidget {
   final String title;
   final Map<String, double> data;
+  final double? maxValue;
+  final double? minValue;
   final bool isMinValueAtCenter;
   final int tickCount;
   const RadarChartCard(
       {super.key,
       this.title = '',
       required this.data,
+      this.maxValue,
+      this.minValue,
       this.isMinValueAtCenter = true,
       this.tickCount = 5});
 
@@ -35,7 +39,7 @@ class RadarChartCard extends StatelessWidget {
           //     );
           //   }).toList(),
           // ),
-          // SizedBox(height: 8),
+          SizedBox(height: 8),
           Expanded(
               child: RadarChart(RadarChartData(
             radarShape: RadarShape.polygon,
@@ -46,7 +50,21 @@ class RadarChartCard extends StatelessWidget {
                     .toList(),
                 fillColor: const Color.fromARGB(100, 41, 93, 239),
                 borderColor: const Color.fromARGB(255, 41, 93, 239),
-              )
+              ),
+              if (maxValue != null)
+                RadarDataSet(
+                  dataEntries: List.generate(
+                      data.length, (index) => RadarEntry(value: maxValue!)),
+                  fillColor: Colors.transparent,
+                  borderColor: Colors.transparent,
+                ),
+              if (minValue != null)
+                RadarDataSet(
+                  dataEntries: List.generate(
+                      data.length, (index) => RadarEntry(value: minValue!)),
+                  fillColor: Colors.transparent,
+                  borderColor: Colors.transparent,
+                ),
             ],
             isMinValueAtCenter: isMinValueAtCenter,
             // isMinValueAtCenter: true,
@@ -61,7 +79,7 @@ class RadarChartCard extends StatelessWidget {
             borderData: FlBorderData(show: false),
             radarBorderData:
                 const BorderSide(color: Color.fromARGB(255, 96, 125, 139)),
-            titlePositionPercentageOffset: 0.1,
+            titlePositionPercentageOffset: 0.2,
             titleTextStyle: TextStyle(fontSize: 16),
             tickCount: tickCount,
             // ticksTextStyle: const TextStyle(fontSize: 18),
@@ -69,7 +87,8 @@ class RadarChartCard extends StatelessWidget {
                 const BorderSide(color: Color.fromARGB(255, 96, 125, 139)),
             gridBorderData:
                 BorderSide(color: Color.fromARGB(255, 96, 125, 139), width: 2),
-          )))
+          ))),
+          SizedBox(height: 16),
         ])));
   }
 }
