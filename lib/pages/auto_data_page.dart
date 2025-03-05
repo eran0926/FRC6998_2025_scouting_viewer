@@ -5,6 +5,7 @@ import 'package:viewer/providers/objective_data_provider.dart';
 import 'package:viewer/utils/pie_chart_data_transformer.dart';
 import 'package:viewer/widgets/bar_chart_card.dart';
 import 'package:viewer/widgets/pie_chart_card.dart';
+import 'package:viewer/widgets/radar_chart_card.dart';
 import 'package:viewer/widgets/selectable_reef_data_table.dart';
 
 class AutoDataPage extends StatelessWidget {
@@ -119,6 +120,18 @@ class AutoDataPage extends StatelessWidget {
                     },
                     legends: ['Average', 'Stability'],
                   ),
+                  RadarChartCard(
+                    title: "Test",
+                    data: {
+                      "AB": 2,
+                      "BC": 3,
+                      "CD": 4,
+                      "EF": 4.56444444,
+                      "GH": 4,
+                      "IJ": 5,
+                    },
+                    legends: ["A"],
+                  )
                 ]),
             // SizedBox(height: 16),
           ],
