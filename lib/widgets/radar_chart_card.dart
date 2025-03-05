@@ -5,9 +5,14 @@ import 'package:viewer/widgets/card_widget.dart';
 class RadarChartCard extends StatelessWidget {
   final String title;
   final Map<String, double> data;
-  final List<String> legends;
+  final bool isMinValueAtCenter;
+  final int tickCount;
   const RadarChartCard(
-      {super.key, this.title = '', required this.data, required this.legends});
+      {super.key,
+      this.title = '',
+      required this.data,
+      this.isMinValueAtCenter = true,
+      this.tickCount = 5});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,8 @@ class RadarChartCard extends StatelessWidget {
                 borderColor: const Color.fromARGB(255, 41, 93, 239),
               )
             ],
+            isMinValueAtCenter: isMinValueAtCenter,
+            // isMinValueAtCenter: true,
             // borderData: FlBorderData(
             //     show: true,
             //     border: Border.all(
@@ -56,7 +63,7 @@ class RadarChartCard extends StatelessWidget {
                 const BorderSide(color: Color.fromARGB(255, 96, 125, 139)),
             titlePositionPercentageOffset: 0.1,
             titleTextStyle: TextStyle(fontSize: 16),
-            tickCount: 4,
+            tickCount: tickCount,
             // ticksTextStyle: const TextStyle(fontSize: 18),
             tickBorderData:
                 const BorderSide(color: Color.fromARGB(255, 96, 125, 139)),
