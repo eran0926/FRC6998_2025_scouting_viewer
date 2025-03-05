@@ -4,6 +4,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:viewer/providers/objective_data_provider.dart';
 import 'package:viewer/utils/pie_chart_data_transformer.dart';
 import 'package:viewer/widgets/bar_chart_card.dart';
+import 'package:viewer/widgets/bar_card.dart';
 import 'package:viewer/widgets/pie_chart_card.dart';
 import 'package:viewer/widgets/radar_chart_card.dart';
 import 'package:viewer/widgets/selectable_reef_data_table.dart';
@@ -44,6 +45,11 @@ class AutoDataPage extends StatelessWidget {
           //   ],
           // ),
           // SizedBox(height: 16),
+          BarCard(
+            title: 'Leave Success Rate',
+            end: objectiveDataProvider.data['auto']['leave_success_rate'] * 100,
+          ),
+          SizedBox(height: 16),
           SelectableReefDataTable(),
           SizedBox(height: 16),
           GridView.count(
