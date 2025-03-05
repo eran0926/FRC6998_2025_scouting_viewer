@@ -1,8 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:viewer/constants.dart';
 import 'package:viewer/widgets/card_widget.dart';
-import 'package:viewer/widgets/chart_legend_widget.dart';
 
 class RadarChartCard extends StatelessWidget {
   final String title;
