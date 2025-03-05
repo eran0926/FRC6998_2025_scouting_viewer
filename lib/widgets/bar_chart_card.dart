@@ -8,8 +8,15 @@ class BarChartCard extends StatelessWidget {
   final String title;
   final Map<String, List<double>> data;
   final List<String> legends;
+  final double? minY;
+  final double? maxY;
   const BarChartCard(
-      {super.key, this.title = '', required this.data, required this.legends});
+      {super.key,
+      this.title = '',
+      required this.data,
+      required this.legends,
+      this.minY,
+      this.maxY});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +28,13 @@ class BarChartCard extends StatelessWidget {
             children: [
               Expanded(
                 child: BarChart(BarChartData(
-                  maxY: data.values
-                          .expand((e) => e)
-                          .reduce((a, b) => a > b ? a : b)
-                          .roundToDouble() +
-                      1,
+                  maxY: maxY ??
+                      data.values
+                              .expand((e) => e)
+                              .reduce((a, b) => a > b ? a : b)
+                              .roundToDouble() +
+                          1,
+                  minY: minY ?? 0,
                   barGroups: [
                     for (var rods in data.values.toList().asMap().entries)
                       BarChartGroupData(
