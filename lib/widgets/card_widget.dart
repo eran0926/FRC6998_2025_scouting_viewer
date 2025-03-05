@@ -26,7 +26,10 @@ class CardWidget extends StatelessWidget {
           if (title.isNotEmpty)
             FittedBox(
                 fit: BoxFit.scaleDown,
-                child: Text(title, style: TextStyle(fontSize: 24))),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(title, style: TextStyle(fontSize: 24)),
+                )),
           if (title.isNotEmpty) SizedBox(height: 8),
           child,
         ],
