@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:viewer/widgets/side_menu_widget.dart';
+import 'package:viewer/widgets/team_number_input_widget.dart';
 
 class MainPage extends StatelessWidget {
   final String title;
@@ -11,10 +13,12 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: !ResponsiveBreakpoints.of(context).largerThan(TABLET)
-            ? AppBar(
-                title: Text(title),
-                leading: Builder(
+        // appBar: !ResponsiveBreakpoints.of(context).largerThan(TABLET)
+        //     ? AppBar(
+        appBar: AppBar(
+          title: Text(title),
+          leading: !ResponsiveBreakpoints.of(context).largerThan(TABLET)
+              ? Builder(
                   builder: (context) {
                     return IconButton(
                       icon: const Icon(Icons.menu),
@@ -23,9 +27,21 @@ class MainPage extends StatelessWidget {
                       },
                     );
                   },
-                ),
-              )
-            : null,
+                )
+              : null,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () {
+                  context.push('/settings');
+                },
+              ),
+            ),
+          ],
+        ),
+        // : null,
         drawer: !ResponsiveBreakpoints.of(context).largerThan(TABLET)
             ? SizedBox(
                 width: 250,

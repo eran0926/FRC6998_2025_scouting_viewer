@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:viewer/data/side_menu_data.dart';
 import 'package:viewer/pages/main_page.dart'; // Import the side menu data
+import 'package:viewer/pages/settings_page.dart';
 
 final router = GoRouter(
   initialLocation: '/',
@@ -20,5 +21,6 @@ final router = GoRouter(
         );
       }).toList(),
     ),
+    GoRoute(path: '/settings', builder: (context, state) => SettingsPage()),
   ],
 );
