@@ -26,8 +26,16 @@ class ObjectiveDataProvider with ChangeNotifier {
 
   late final ScoutingApiService _apiService;
 
+  // ObjectiveDataProvider(this.context) {
+  //   // _apiService = ScoutingApiService(Provider.of<Remo/teUrlProvider>(context));
+  // }
+
   ObjectiveDataProvider(this.context) {
-    _apiService = ScoutingApiService(Provider.of<RemoteUrlProvider>(context));
+    Future.microtask(() {
+      final remoteUrlProvider =
+          Provider.of<RemoteUrlProvider>(context, listen: false);
+      _apiService = ScoutingApiService(remoteUrlProvider);
+    });
   }
 
   Future<void> selectTeam(String teamNumber) async {
