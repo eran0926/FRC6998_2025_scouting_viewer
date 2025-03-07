@@ -62,10 +62,12 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: Text('Reset'),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        remoteUrlProvider
+                      onPressed: () async {
+                        await remoteUrlProvider
                             .setRemoteUrl(_remoteUrlController.text);
-                        context.pop();
+                        if (context.mounted) {
+                          context.pop();
+                        }
                       },
                       child: Text('Save'),
                     ),

@@ -17,8 +17,12 @@ class RemoteUrlProvider extends ChangeNotifier {
     _loadRemoteUrl();
   }
 
-  void setRemoteUrl(String url) {
+  Future<void> setRemoteUrl(String url) async {
     _remoteUrl = url;
     notifyListeners();
+
+    // 儲存到 SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('remoteUrl', url);
   }
 }
