@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:viewer/services/scouting_api_service.dart';
 
 class TeamListProvider extends ChangeNotifier {
+  final BuildContext context;
   List<dynamic> _teams = [];
   bool _isLoading = false;
   DateTime _lastUpdated = DateTime.now();
+
+  TeamListProvider(this.context);
 
   List<dynamic> get teams {
     if (_isLoading) {
@@ -22,7 +25,7 @@ class TeamListProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    final apiService = ScoutingApiService();
+    final apiService = ScoutingApiService(context);
     _teams = await apiService.fetchTeams();
 
     _isLoading = false;

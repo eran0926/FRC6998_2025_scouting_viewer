@@ -1,10 +1,18 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:viewer/providers/remote_url_provider.dart';
 
 import 'package:viewer/utils/logger.dart';
 
 class ScoutingApiService {
-  final Uri _baseUrl = Uri.parse('http://localhost:8000');
+  final BuildContext context;
+
+  ScoutingApiService(this.context);
+
+  Uri get _baseUrl =>
+      Uri.parse(Provider.of<RemoteUrlProvider>(context).remoteUrl);
 
   Future<List<String>> fetchTeams() async {
     try {

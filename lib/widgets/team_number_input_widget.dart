@@ -17,7 +17,7 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
   late DateTime _lastUpdated;
   bool isFetching = false;
   List<String> teamList = [];
-  final ScoutingApiService apiService = ScoutingApiService();
+  late ScoutingApiService apiService;
 
   void _fetchTeamList() async {
     setState(() {
@@ -38,8 +38,10 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
   }
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 使用 didChangeDependencies 來初始化 apiService
+    apiService = ScoutingApiService(context);
     _fetchTeamList();
   }
 

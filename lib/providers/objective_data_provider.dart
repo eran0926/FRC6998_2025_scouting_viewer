@@ -12,6 +12,7 @@ enum ObjectiveDataProviderState {
 }
 
 class ObjectiveDataProvider with ChangeNotifier {
+  final BuildContext context;
   ObjectiveDataProviderState _state = ObjectiveDataProviderState.teamUnset;
   ObjectiveDataProviderState get state => _state;
 
@@ -21,7 +22,11 @@ class ObjectiveDataProvider with ChangeNotifier {
   int _statusCode = 0;
   int get statusCode => _statusCode;
 
-  final ScoutingApiService _apiService = ScoutingApiService();
+  late final ScoutingApiService _apiService;
+
+  ObjectiveDataProvider(this.context) {
+    _apiService = ScoutingApiService(context);
+  }
 
   Future<void> selectTeam(String teamNumber) async {
     if (teamNumber.isEmpty) {
