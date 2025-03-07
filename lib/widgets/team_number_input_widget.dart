@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:viewer/providers/remote_url_provider.dart';
 
 import 'package:viewer/services/scouting_api_service.dart';
 import 'package:viewer/providers/objective_data_provider.dart';
@@ -41,7 +42,8 @@ class _TeamNumberInputWidgetState extends State<TeamNumberInputWidget> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     // 使用 didChangeDependencies 來初始化 apiService
-    apiService = ScoutingApiService(context);
+    apiService = ScoutingApiService(
+        Provider.of<RemoteUrlProvider>(context, listen: false));
     _fetchTeamList();
   }
 

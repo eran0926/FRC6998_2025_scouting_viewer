@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:viewer/providers/remote_url_provider.dart';
 
 import '../services/scouting_api_service.dart';
 
@@ -25,7 +27,7 @@ class ObjectiveDataProvider with ChangeNotifier {
   late final ScoutingApiService _apiService;
 
   ObjectiveDataProvider(this.context) {
-    _apiService = ScoutingApiService(context);
+    _apiService = ScoutingApiService(Provider.of<RemoteUrlProvider>(context));
   }
 
   Future<void> selectTeam(String teamNumber) async {

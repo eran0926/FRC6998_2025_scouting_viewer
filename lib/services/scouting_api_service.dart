@@ -7,12 +7,16 @@ import 'package:viewer/providers/remote_url_provider.dart';
 import 'package:viewer/utils/logger.dart';
 
 class ScoutingApiService {
-  final BuildContext context;
+  // final BuildContext context;
+  // ScoutingApiService(this.context);
 
-  ScoutingApiService(this.context);
+  final RemoteUrlProvider remoteUrlProvider;
 
-  Uri get _baseUrl =>
-      Uri.parse(Provider.of<RemoteUrlProvider>(context).remoteUrl);
+  ScoutingApiService(this.remoteUrlProvider);
+
+  Uri get _baseUrl => Uri.parse(remoteUrlProvider.remoteUrl);
+  // Uri get _baseUrl =>
+  //     Uri.parse(Provider.of<RemoteUrlProvider>(context).remoteUrl);
 
   Future<List<String>> fetchTeams() async {
     try {
