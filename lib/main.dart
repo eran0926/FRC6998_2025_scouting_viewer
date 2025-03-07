@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:viewer/providers/remote_url_provider.dart';
 import 'package:viewer/router.dart';
 
 import 'providers/objective_data_provider.dart';
@@ -17,6 +18,7 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ObjectiveDataProvider()),
+        ChangeNotifierProvider(create: (_) => RemoteUrlProvider()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
