@@ -26,7 +26,8 @@ class ScoutingApiService {
         final List<dynamic> data = jsonDecode(response.body);
         logger.i('Teams: $data');
         List<String> teamList = data.map((e) => e.toString()).toList();
-        teamList.sort();
+        teamList
+            .sort((String a, String b) => int.parse(a).compareTo(int.parse(b)));
         return teamList;
       } else {
         throw Exception('Failed to load teams');
