@@ -5,6 +5,11 @@ A part of frc6998's 2025 scouting system. Users can use this web app to visualiz
 ## Demo Page
 [Demo Page](https://2025-scouting-dashboard.frc6998.org/)
 
+Example Remote URL:
+```
+https://2025-scouting-backend.frc6998.org
+```
+
 ## Setting
 1. Click the gear icon in the top-right corner.
 2. In the "Enter Remote URL" field, input the URL of your scouting server (e.g., `http://your-server-ip:5000`).
