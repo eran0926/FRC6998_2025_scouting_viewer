@@ -25,7 +25,8 @@ jobs:
           channel: stable
 
       - name: Build flutter web
-        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
+        # run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
+        run: flutter build web --release
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
