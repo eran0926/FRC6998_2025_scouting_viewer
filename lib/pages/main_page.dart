@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:viewer/widgets/side_menu_widget.dart';
-import 'package:viewer/widgets/team_number_input_widget.dart';
 
 class MainPage extends StatelessWidget {
   final String title;
