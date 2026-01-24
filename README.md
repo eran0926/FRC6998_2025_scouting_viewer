@@ -3,7 +3,7 @@
 A part of frc6998's 2025 scouting system. Users can use this web app to visualize and analyze the scouting data collected from the field.
 
 ## Demo Page
-[Demo Page](https://eran0926.github.io/FRC6998_2025_scouting_viewer/)
+[Demo Page](https://2025-scouting-dashboard.frc6998.org/)
 
 ## Setting
 1. Click the gear icon in the top-right corner.
